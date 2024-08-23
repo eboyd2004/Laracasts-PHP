@@ -1,11 +1,12 @@
 <?php
-const BASE_PATH = '/Users/206826026/Projects/Laracasts-PHP/';
-//const BASE_PATH = __DIR__;
 
-require BASE_PATH . 'Core/functions.php';
+const BASE_PATH = __DIR__.'/../';
+
+require BASE_PATH.'Core/functions.php';
 
 spl_autoload_register(function ($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR , $class);
+    // Core\Database
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
 
     require base_path("{$class}.php");
 });
