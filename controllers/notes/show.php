@@ -5,10 +5,11 @@ use Core\Database;
 $config = require base_path('config.php');
 $db = new Database($config['database']);
 
-$currentUserId = 25;
+$currentUserId = 1;
 
-// Kinda gross, yes? We'll refactor toward a cleaner approach in episode 33.
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    // foem was submitted delete the note
+
     $note = $db->query('select * from notes where id = :id', [
         'id' => $_GET['id']
     ])->findOrFail();
@@ -22,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('location: /notes');
     exit();
 } else {
+
+
+
+
     $note = $db->query('select * from notes where id = :id', [
         'id' => $_GET['id']
     ])->findOrFail();
@@ -32,4 +37,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'heading' => 'Note',
         'note' => $note
     ]);
+
 }
